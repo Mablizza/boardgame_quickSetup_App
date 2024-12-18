@@ -16,10 +16,19 @@ function addSearchFunctionality(){
     
     inputEle.value = ""
 
-    searchBtn.addEventListener("click", function(){
+    function search(){
         searchedBG = inputEle.value
-        filteredBGArray = bgCollection.filter((boardgame) => boardgame.title.includes(searchedBG))
+        filteredBGArray = bgCollection.filter((boardgame) => boardgame.title.toLocaleLowerCase().includes(searchedBG))
         generateSummaryCardsArray(filteredBGArray)
+    }
+
+    searchBtn.addEventListener("click", search)
+
+    //if 'ENTER' was hit on <input>, run click(search) EVent
+    inputEle.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            search()
+        }
     })
 }
 addSearchFunctionality()
@@ -56,7 +65,7 @@ function addClickListenerToCards() {
         function cardClick(e){
             let clickedID = ""
 
-            console.log(e.target.parentElement.id)
+            //console.log(e.target.parentElement.id)
             if(e.target.parentElement.id.includes("id")){
                 clickedID = e.target.parentElement.id
                 console.log("Clicked Card ID:", clickedID)
@@ -73,21 +82,45 @@ function addClickListenerToCards() {
             }
             
             const clickedCardElement = document.getElementById(clickedID)
-            if (clickedCardElement == null) {return}
+            console.log("clicked card element:", clickedCardElement)
+            if (clickedCardElement.children[0] == null) {return}
+            else if (clickedCardElement.children[0] == "") {return}
             else {
-                console.log(clickedCardElement.children[0].innerText)
+                //console.log("clicked card element:", clickedCardElement)
+                //console.log("clicked card element children:", clickedCardElement.children[0].innerText)
                 selectedTitle = clickedCardElement.children[0].innerText
             }
-        renderTitle(selectedTitle)
-        searchContainer.style.display = "none"  // display = "block" to revert
-        displayCardDetails()
+        console.log("selectedTitle", selectedTitle)
+        if (selectedTitle !== "" && 
+            selectedTitle !== "board_setup" && 
+            selectedTitle !== "player_setup" && 
+            selectedTitle !== "player_turns" &&
+            selectedTitle !== "win_condition"
+            ) {
+            renderTitle(selectedTitle)
+            searchContainer.style.display = "none"  // display = "block" to revert
+            displayCardDetails()
+        } else {return}
+
+        // renderTitle(selectedTitle)
+        // searchContainer.style.display = "none"  // display = "block" to revert
+        // displayCardDetails()
         }
 }
 addClickListenerToCards()
 
 
 function renderTitle(title = "Quick Game Setup Guide"){
-    pageTitle.innerText = title
+    if (title === "Quick Game Setup Guide") {pageTitle.innerText = title}
+    else {
+        if (!document.getElementById("go-back")) {
+        const goBackEl = document.body.insertBefore(document.createElement("a"), pageTitle)
+        goBackEl.id = "go-back"
+        goBackEl.textContent = "Go Back"
+        goBackEl.href = "http://127.0.0.1:5500/index.html" // reload to original index
+        }    
+        pageTitle.innerText = title
+    }
 }
 renderTitle()
 
@@ -95,7 +128,7 @@ renderTitle()
 function displayCardDetails(){
     const selectedBoardGame = bgCollection.find((boardgame) => boardgame.title === selectedTitle)
     const selectedBGDetails = Object.keys(selectedBoardGame.details)
-    const selectedBGDetailsValues = Object.entries(selectedBoardGame.details)    
+    const selectedBGDetailsValues = Object.entries(selectedBoardGame.details)
     
     function createDivContainersForBGDetails(){    
         for (const key in selectedBGDetails) {
@@ -108,6 +141,7 @@ function displayCardDetails(){
     createDivContainersForBGDetails()
     
     heroContainer.innerHTML = `<img src="${selectedBoardGame.img}">`
+    
 
     function renderBoardSetup(){
         const boardSetUpContainer = document.getElementById("board_setup")
