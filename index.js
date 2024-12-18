@@ -114,7 +114,7 @@ function renderTitle(title = "Quick Game Setup Guide"){
         const goBackEl = document.body.insertBefore(document.createElement("a"), pageTitle)
         goBackEl.id = "go-back"
         goBackEl.textContent = "Go Back"
-        goBackEl.href = "http://127.0.0.1:5500/index.html" // reload to original index
+        goBackEl.href = "https://boardgame-quicksetup-app.pages.dev/" // reload to original index
         }    
         pageTitle.innerText = title
     }
