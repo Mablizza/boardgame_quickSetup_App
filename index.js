@@ -17,7 +17,7 @@ function addSearchFunctionality(){
     inputEle.value = ""
 
     function search(){
-        searchedBG = inputEle.value
+        searchedBG = inputEle.value.toLocaleLowerCase()
         filteredBGArray = bgCollection.filter((boardgame) => boardgame.title.toLocaleLowerCase().includes(searchedBG))
         generateSummaryCardsArray(filteredBGArray)
     }
@@ -102,9 +102,6 @@ function addClickListenerToCards() {
             displayCardDetails()
         } else {return}
 
-        // renderTitle(selectedTitle)
-        // searchContainer.style.display = "none"  // display = "block" to revert
-        // displayCardDetails()
         }
 }
 addClickListenerToCards()
