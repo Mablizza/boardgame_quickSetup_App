@@ -11,14 +11,30 @@ body {
     position: relative;
 }
 
-#card-container {
+nav{
+    height: 4rem;
+    /* background-color: aqua; */
     display: flex;
-    flex-wrap: wrap;
-    /* min-width: 0; */
+    gap: 1.5rem;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.fa-dice{
+    size: 50rem;
+}
+
+#card-container {
+    /*display: flex;
+    flex-wrap: wrap;*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px
 }
 
 .summary-card{
-    width: 200px;
+    width: 11rem;
     margin: 1%;
     padding: 0%;
     background-color: gainsboro;
@@ -29,11 +45,13 @@ body {
 }
 
 .summary-card img{
-    width: 150px;
-    height: 150px;
+    max-width: 35vw;
+    max-height: 150px;
     border: 1px solid black;
     border-radius: 5px;
 }
+
+/*DETAILS RENDER*/
 
 #hero img{
     width: 500px;
@@ -45,4 +63,22 @@ body {
 
 #win_condition p {
     padding: 0px 22px;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 450px) {
+    body {
+        background-color: lightblue;
+    }
+
+    #card-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px */
+    }
+
+
 }

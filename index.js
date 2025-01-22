@@ -1,8 +1,7 @@
 import { bgCollection } from "./boardgames.js"
 
-const pageTitle = document.getElementById("page-title")
+
 const searchContainer = document.getElementById("search-container")
-const cardContainerDiv = document.getElementById("card-container")
 const detailsContainer = document.getElementById("details-container")
 const heroContainer = document.getElementById("hero")
 
@@ -33,7 +32,9 @@ function addSearchFunctionality(){
 }
 addSearchFunctionality()
 
+
 function generateSummaryCardsArray(bgArray){
+    const cardContainerDiv = document.getElementById("card-container")
     let idGenerator = 1
 
     cardContainerDiv.innerHTML = ``
@@ -90,7 +91,7 @@ function addClickListenerToCards() {
                 //console.log("clicked card element children:", clickedCardElement.children[0].innerText)
                 selectedTitle = clickedCardElement.children[0].innerText
             }
-        console.log("selectedTitle", selectedTitle)
+        console.log("selectedTitle: ", selectedTitle)
         if (selectedTitle !== "" && 
             selectedTitle !== "board_setup" && 
             selectedTitle !== "player_setup" && 
@@ -108,15 +109,17 @@ addClickListenerToCards()
 
 
 function renderTitle(title = "Quick Game Setup Guide"){
-    if (title === "Quick Game Setup Guide") {pageTitle.innerText = title}
+    const logoEl = document.getElementById("page-logo")
+    const pageTitle = document.getElementById("page-title")
+    const goBackEl = document.getElementById("go-back")
+
+    if (title === "Quick Game Setup Guide") {
+        goBackEl.style.display="none"
+        pageTitle.innerText = title}
     else {
-        if (!document.getElementById("go-back")) {
-        const goBackEl = document.body.insertBefore(document.createElement("a"), pageTitle)
-        goBackEl.id = "go-back"
-        goBackEl.textContent = "Go Back"
-        goBackEl.href = "https://boardgame-quicksetup-app.pages.dev/" // reload to original index
-        }    
-        pageTitle.innerText = title
+        goBackEl.style.display="inline"
+        logoEl.style.display="none"
+        pageTitle.style.display="none"
     }
 }
 renderTitle()
