@@ -5,7 +5,7 @@ html {
 body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-bottom: 50px;
-    background-color: rgb(239, 234, 227);
+    background-color: lightblue;
     max-width: 100%;
     overflow-x: hidden;
     position: relative;
@@ -30,25 +30,46 @@ nav{
     flex-wrap: wrap;*/
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px
+    gap: 5px;
+    padding: 1.5rem 0rem;
+    border-top: 2px dotted rgb(30, 59, 157);
 }
 
 .summary-card{
-    width: 11rem;
+    width: 10.6rem;
     margin: 1%;
     padding: 0%;
-    background-color: gainsboro;
+    background-color: rgb(231, 246, 246);
     border: 2px solid;
     border-color: black;
     border-radius: 7px;
-    text-align: center;
+    /* text-align: center; */
+    box-shadow: 3px 3px 10px 0.1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .summary-card img{
+    margin: 0 auto;
     max-width: 35vw;
+    min-width: 150px;
     max-height: 150px;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.summary-card h3{
+    margin: 0.5rem 0;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.summary-card dd{
+    margin: 0 auto;
+    text-align: center;
 }
 
 /*DETAILS RENDER*/
