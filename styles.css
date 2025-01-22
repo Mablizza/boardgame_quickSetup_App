@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-bottom: 50px;
     background-color: rgb(239, 234, 227);
     max-width: 100%;
@@ -54,12 +54,36 @@ nav{
 /*DETAILS RENDER*/
 
 #hero img{
-    width: 500px;
-    height: 500px;
-    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    max-width: 500px;
+    max-height: 500px;
+    max-width: 90%;
+    object-fit: contain;
 }
 
+#board_setup h2,
+#player_setup h2,
+#player_turns h2,
+#win_condition h2{
+    padding: 0 1rem;
+    text-transform: uppercase;
+    color: #0d0a6b;
+    background-color: rgb(160, 206, 206);
+    border: solid 1px;
+    border-radius: 5px;
+}
 
+.board-setup-details,
+.player-setup-details,
+.player-turns-details,
+.win-condition-details{
+    display: none;
+}
+
+#details-container h2{
+    cursor: pointer;
+}
 
 #win_condition p {
     padding: 0px 22px;

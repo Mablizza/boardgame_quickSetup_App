@@ -1,10 +1,5 @@
 import { bgCollection } from "./boardgames.js"
 
-
-const searchContainer = document.getElementById("search-container")
-const detailsContainer = document.getElementById("details-container")
-const heroContainer = document.getElementById("hero")
-
 let selectedTitle = ""
 let searchedBG = ""
 let filteredBGArray = []
@@ -64,6 +59,7 @@ function addClickListenerToCards() {
         }
 
         function cardClick(e){
+            const searchContainer = document.getElementById("search-container")
             let clickedID = ""
 
             //console.log(e.target.parentElement.id)
@@ -126,10 +122,15 @@ renderTitle()
 
 
 function displayCardDetails(){
+    const detailsContainer = document.getElementById("details-container")
+    const heroContainer = document.getElementById("hero")
+
     const selectedBoardGame = bgCollection.find((boardgame) => boardgame.title === selectedTitle)
     const selectedBGDetails = Object.keys(selectedBoardGame.details)
     const selectedBGDetailsValues = Object.entries(selectedBoardGame.details)
     
+    heroContainer.innerHTML = `<img src="${selectedBoardGame.img}">`
+
     function createDivContainersForBGDetails(){    
         for (const key in selectedBGDetails) {
             //create a div for each category of details existing in the boardgame Object
@@ -140,13 +141,15 @@ function displayCardDetails(){
     }
     createDivContainersForBGDetails()
     
-    heroContainer.innerHTML = `<img src="${selectedBoardGame.img}">`
-    
-
     function renderBoardSetup(){
         const boardSetUpContainer = document.getElementById("board_setup")
-        boardSetUpContainer.appendChild(document.createElement("h2")).textContent = `${selectedBGDetailsValues[0][0]}`
+        const boardSetup = boardSetUpContainer.appendChild(document.createElement("h2"))
+        boardSetup.textContent = `${selectedBGDetailsValues[0][0]}`
+        boardSetup.addEventListener('click', function(){
+            boardSetupOL.classList.toggle("board-setup-details")
+        })
         const boardSetupOL = boardSetUpContainer.appendChild(document.createElement("ol"))
+        boardSetupOL.classList.add("board-setup-details")
         for (const value in selectedBGDetailsValues[0][1]) {
             boardSetupOL.appendChild(document.createElement("li")).textContent = `${selectedBGDetailsValues[0][1][value]}`
         }
@@ -155,8 +158,13 @@ function displayCardDetails(){
 
     function renderPlayerSetup(){
         const playerSetUpContainer = document.getElementById("player_setup")
-        playerSetUpContainer.appendChild(document.createElement("h2")).textContent = `${selectedBGDetailsValues[1][0]}`
+        const playerSetUp = playerSetUpContainer.appendChild(document.createElement("h2"))
+        playerSetUp.textContent = `${selectedBGDetailsValues[1][0]}`
+        playerSetUp.addEventListener('click', function(){
+            playerSetupOL.classList.toggle("player-setup-details")
+        })
         const playerSetupOL = playerSetUpContainer.appendChild(document.createElement("ol"))
+        playerSetupOL.classList.add("player-setup-details")
         for (const value in selectedBGDetailsValues[1][1]) {
             playerSetupOL.appendChild(document.createElement("li")).textContent = `${selectedBGDetailsValues[1][1][value]}`
         }
@@ -165,8 +173,13 @@ function displayCardDetails(){
 
     function renderPlayerTurns(){
         const playerTurnsContainer = document.getElementById("player_turns")
-        playerTurnsContainer.appendChild(document.createElement("h2")).textContent = `${selectedBGDetailsValues[2][0]}`
+        const playerTurns = playerTurnsContainer.appendChild(document.createElement("h2"))
+        playerTurns.textContent = `${selectedBGDetailsValues[2][0]}`
+        playerTurns.addEventListener('click', function(){
+            playerTurnsOL.classList.toggle("player-turns-details")
+        })
         const playerTurnsOL = playerTurnsContainer.appendChild(document.createElement("ol"))
+        playerTurnsOL.classList.add("player-turns-details")
         for (const value in selectedBGDetailsValues[2][1]) {
             playerTurnsOL.appendChild(document.createElement("li")).textContent = `${selectedBGDetailsValues[2][1][value]}`
         }
@@ -175,9 +188,16 @@ function displayCardDetails(){
     
     function renderWinCondition(){
         const winConditionContainer = document.getElementById("win_condition")
-    
-        winConditionContainer.appendChild(document.createElement("h2")).textContent = `${selectedBGDetailsValues[3][0]}`
-        winConditionContainer.appendChild(document.createElement("p")).textContent = `${selectedBGDetailsValues[3][1]}`
+        
+        const winCondition = winConditionContainer.appendChild(document.createElement("h2"))
+        winCondition.textContent = `${selectedBGDetailsValues[3][0]}`
+        winCondition.addEventListener('click', function(){
+            windConditionDetails.classList.toggle("win-condition-details")
+        })
+
+        const windConditionDetails = winConditionContainer.appendChild(document.createElement("p"))
+        windConditionDetails.textContent = `${selectedBGDetailsValues[3][1]}`
+        windConditionDetails.classList.add("win-condition-details")
     }
     renderWinCondition()
 
