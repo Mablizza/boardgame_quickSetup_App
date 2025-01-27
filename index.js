@@ -65,12 +65,12 @@ function addClickListenerToCards() {
             //console.log(e.target.parentElement.id)
             if(e.target.parentElement.id.includes("id")){
                 clickedID = e.target.parentElement.id
-                console.log("Clicked Card ID:", clickedID)
+                // console.log("Clicked Card ID:", clickedID)
             }
             else if ( e.target.parentElement.id == "card-container" ) {
-                console.log("outer Elem, going on node down for ID", e.target.parentElement.id)
+                // console.log("outer Elem, going on node down for ID", e.target.parentElement.id)
                 clickedID = e.target.id
-                console.log("Clicked Card ID:", clickedID)
+                // console.log("Clicked Card ID:", clickedID)
             } 
             else {
                 console.log("no id, going up a level for ID", e.target.parentElement.id)
@@ -79,7 +79,7 @@ function addClickListenerToCards() {
             }
             
             const clickedCardElement = document.getElementById(clickedID)
-            console.log("clicked card element:", clickedCardElement)
+            // console.log("clicked card element:", clickedCardElement)
             if (clickedCardElement.children[0] == null) {return}
             else if (clickedCardElement.children[0] == "") {return}
             else {
@@ -87,7 +87,7 @@ function addClickListenerToCards() {
                 //console.log("clicked card element children:", clickedCardElement.children[0].innerText)
                 selectedTitle = clickedCardElement.children[0].innerText
             }
-        console.log("selectedTitle: ", selectedTitle)
+        // console.log("selectedTitle: ", selectedTitle)
         if (selectedTitle !== "" && 
             selectedTitle !== "board_setup" && 
             selectedTitle !== "player_setup" && 
@@ -130,76 +130,124 @@ function displayCardDetails(){
     const selectedBGDetailsValues = Object.entries(selectedBoardGame.details)
     
     heroContainer.innerHTML = `<img src="${selectedBoardGame.img}">`
-
-    function createDivContainersForBGDetails(){    
-        for (const key in selectedBGDetails) {
-            //create a div for each category of details existing in the boardgame Object
-            detailsContainer  //.appendChild(document.createElement("div")).id = selectedBGDetails[key]
-                .appendChild(document.createElement("div"))
-                .setAttribute("id", selectedBGDetails[key])
-        }
+ 
+    /* CREATE A DIV FOR EACH CATEGORY OF DETAILS EXISTING IN THE BOARDGAME OBJECT */
+    for (const key in selectedBGDetails) {
+        detailsContainer  //.appendChild(document.createElement("div")).id = selectedBGDetails[key]
+            .appendChild(document.createElement("div"))
+            .setAttribute("id", selectedBGDetails[key])
     }
-    createDivContainersForBGDetails()
     
+    /*CALLS FUNCTIONS FOR RENDERING GAME DETAIL COMPONENTS*/
+    if (document.getElementById("board_setup")){
+        console.log("a Board Setup does exist, call func 'renderBoard_Setup' Here)")
+        renderBoardSetup()
+    }
+    if(document.getElementById("player_setup")){
+        // console.log("a Player Setup does exist, call func 'renderPlayer_Setup' Here)")
+        renderPlayerSetup()
+    }
+    if(document.getElementById("player_turns")){
+        // console.log("a Player Turns does exist, call func 'renderPlayer_Turns' Here)")
+        renderPlayerTurns()
+    }
+    if(document.getElementById("win_condition")){
+        console.log("a Player Win Condition does exist, call func 'renderWin_Condition' Here)")
+        renderWinCondition()
+    }
+    renderPDFLinkIfAvailable()
+
+    /*DETAIL RENDERING FUNCTIONS*/
     function renderBoardSetup(){
         const boardSetUpContainer = document.getElementById("board_setup")
-        const boardSetup = boardSetUpContainer.appendChild(document.createElement("h2"))
-        boardSetup.textContent = `${selectedBGDetailsValues[0][0]}`
-        boardSetup.addEventListener('click', function(){
-            boardSetupOL.classList.toggle("board-setup-details")
+
+        /* CREATES ARRAY SPECIFIC TO THE CATEGORY WITH FILTER */
+        const boardSetupArray = selectedBGDetailsValues.filter( (setup) => setup[0] == "board_setup")[0]
+        // console.log("boardSetupArray:", boardSetupArray)
+        // console.log("boardSetupArray[1]:", boardSetupArray[1])
+
+        /* ADDS RESPECTIVE TITLE AND EVENT LISTENER FOR CLICK TO SHOW/TOGGLE THE DETAILS */
+        const boardSetupTitle = boardSetUpContainer.appendChild(document.createElement("h2"))
+        boardSetupTitle.textContent = `${boardSetupArray[0]}`
+        boardSetupTitle.addEventListener('click', function(){
+            boardSetupList.classList.toggle("board-setup-details")
         })
-        const boardSetupOL = boardSetUpContainer.appendChild(document.createElement("ol"))
-        boardSetupOL.classList.add("board-setup-details")
-        for (const value in selectedBGDetailsValues[0][1]) {
-            boardSetupOL.appendChild(document.createElement("li")).textContent = `${selectedBGDetailsValues[0][1][value]}`
+
+        /* CREATES LIST OF DETAILS FOR THE CATEGORY ALONG WITH CLASS FOR CSS*/
+        const boardSetupList = boardSetUpContainer.appendChild(document.createElement("ol"))
+        boardSetupList.classList.add("board-setup-details")
+        for (const value in boardSetupArray[1]) {
+            boardSetupList.appendChild(document.createElement("li")).innerHTML = `${boardSetupArray[1][value]}`
         }
     }
-    renderBoardSetup()
-
+    
     function renderPlayerSetup(){
         const playerSetUpContainer = document.getElementById("player_setup")
-        const playerSetUp = playerSetUpContainer.appendChild(document.createElement("h2"))
-        playerSetUp.textContent = `${selectedBGDetailsValues[1][0]}`
-        playerSetUp.addEventListener('click', function(){
-            playerSetupOL.classList.toggle("player-setup-details")
+
+        /* CREATES ARRAY SPECIFIC TO THE CATEGORY WITH FILTER */
+        const playerSetupArray = selectedBGDetailsValues.filter( (setup) => setup[0] == "player_setup")[0]
+        // console.log("playerSetupArray:", playerSetupArray)
+        // console.log("playerSetupArray[1]:", playerSetupArray[1])
+
+        /* ADDS RESPECTIVE TITLE AND EVENT LISTENER FOR CLICK TO SHOW/TOGGLE THE DETAILS */
+        const playerSetupTitle = playerSetUpContainer.appendChild(document.createElement("h2"))
+        playerSetupTitle.textContent = `${playerSetupArray[0]}`
+        playerSetupTitle.addEventListener('click', function(){
+            playerSetupList.classList.toggle("player-setup-details")
         })
-        const playerSetupOL = playerSetUpContainer.appendChild(document.createElement("ol"))
-        playerSetupOL.classList.add("player-setup-details")
-        for (const value in selectedBGDetailsValues[1][1]) {
-            playerSetupOL.appendChild(document.createElement("li")).textContent = `${selectedBGDetailsValues[1][1][value]}`
+
+        /* CREATES LIST OF DETAILS FOR THE CATEGORY ALONG WITH CLASS FOR CSS*/
+        const playerSetupList = playerSetUpContainer.appendChild(document.createElement("ol"))
+        playerSetupList.classList.add("player-setup-details")
+        for (const value in playerSetupArray[1]) {
+            playerSetupList.appendChild(document.createElement("li")).innerHTML = `${playerSetupArray[1][value]}`
         }
     }
-    renderPlayerSetup()
-
+    
     function renderPlayerTurns(){
         const playerTurnsContainer = document.getElementById("player_turns")
-        const playerTurns = playerTurnsContainer.appendChild(document.createElement("h2"))
-        playerTurns.textContent = `${selectedBGDetailsValues[2][0]}`
-        playerTurns.addEventListener('click', function(){
-            playerTurnsOL.classList.toggle("player-turns-details")
+
+        /* CREATES ARRAY SPECIFIC TO THE CATEGORY WITH FILTER */
+        const playerTurnsArray = selectedBGDetailsValues.filter( (setup) => setup[0] == "player_turns")[0]
+        console.log("playerTurnsArray:", playerTurnsArray)
+        console.log("playerTurnsArray[1]:", playerTurnsArray[1])
+
+        /* ADDS RESPECTIVE TITLE AND EVENT LISTENER FOR CLICK TO SHOW/TOGGLE THE DETAILS */
+        const playerTurnsTitle = playerTurnsContainer.appendChild(document.createElement("h2"))
+        playerTurnsTitle.textContent = `${playerTurnsArray[0]}`
+        playerTurnsTitle.addEventListener('click', function(){
+            playerTurnsList.classList.toggle("player-turns-details")
         })
-        const playerTurnsOL = playerTurnsContainer.appendChild(document.createElement("ol"))
-        playerTurnsOL.classList.add("player-turns-details")
-        for (const value in selectedBGDetailsValues[2][1]) {
-            playerTurnsOL.appendChild(document.createElement("li")).textContent = `${selectedBGDetailsValues[2][1][value]}`
+
+        /* CREATES LIST OF DETAILS FOR THE CATEGORY ALONG WITH CLASS FOR CSS*/
+        const playerTurnsList = playerTurnsContainer.appendChild(document.createElement("ol"))
+        playerTurnsList.classList.add("player-turns-details")
+        for (const value in playerTurnsArray[1]) {
+            playerTurnsList.appendChild(document.createElement("li")).innerHTML = `${playerTurnsArray[1][value]}`
         }
+
     }
-    renderPlayerTurns()
-    
+
     function renderWinCondition(){
         const winConditionContainer = document.getElementById("win_condition")
+
+        /* CREATES ARRAY SPECIFIC TO THE CATEGORY WITH FILTER */
+        const playerWinConditionArray = selectedBGDetailsValues.filter( (setup) => setup[0] == "win_condition")[0]
+        console.log("playerWinConditionArray[0]:", playerWinConditionArray[0])
+        console.log("playerWinConditionArray[1]:", playerWinConditionArray[1])
         
+        /* ADDS RESPECTIVE TITLE AND EVENT LISTENER FOR CLICK TO SHOW/TOGGLE THE DETAILS */
         const winCondition = winConditionContainer.appendChild(document.createElement("h2"))
-        winCondition.textContent = `${selectedBGDetailsValues[3][0]}`
+        winCondition.textContent = `${playerWinConditionArray[0]}`
         winCondition.addEventListener('click', function(){
             windConditionDetails.classList.toggle("win-condition-details")
         })
 
+        /* CREATES A <PARA> OF DETAILS FOR THE CATEGORY ALONG WITH CLASS FOR CSS*/
         const windConditionDetails = winConditionContainer.appendChild(document.createElement("p"))
-        windConditionDetails.textContent = `${selectedBGDetailsValues[3][1]}`
+        windConditionDetails.textContent = `${playerWinConditionArray[1]}`
         windConditionDetails.classList.add("win-condition-details")
     }
-    renderWinCondition()
 
     function renderPDFLinkIfAvailable(){    
     //if PDF link is available, render the PDF as an Anchor Link
@@ -214,6 +262,4 @@ function displayCardDetails(){
                                                                 `
         } else {console.log("there is no available pdf to show")}
     }  
-    renderPDFLinkIfAvailable()
-
 }

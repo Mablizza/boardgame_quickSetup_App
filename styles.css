@@ -112,6 +112,10 @@ nav{
     padding: 0px 22px;
 }
 
+.bold{
+    font-weight: bold;
+}
+
 /* MEDIA QUERIES */
 
 @media (min-width: 450px) {

@@ -225,9 +225,9 @@ export let bgCollection = [
         player_turns: 
             {
             0: "A turn consists of the following three phases: 1) Roll Dice 2) Earn Income 3) Construction.",
-            1: "ROLL DICE. To begin their turn a player rolls the dice. At the start of the game each player will roll a single die. Once a player has built their Train Station, they may roll one or two dice on their turn. When rolling two dice, the dice are always summed together.",
-            2: `EARN INCOME. Players earn income based on the dice roll and the effects of the Establishments that they own that match the dice roll. The order to pay/collect from establishments is RED, GREEN, BLUE and PURPLE. The effects are multiplied by the number of Establishments of that type owned`,
-            3: `CONSTRUCTION. To conclude a player’s turn, he or she may pay to construct one single Establishment OR pay to finish construction on a single Landmark by paying the cost shown on the lower left-hand corner of the card.`
+            1: `<span class="bold">ROLL DICE.</span> To begin their turn a player rolls the dice. At the start of the game each player will roll a single die. Once a player has built their Train Station, they may roll one or two dice on their turn. When rolling two dice, the dice are always summed together.`,
+            2: `<span class="bold">EARN INCOME.</span> Players earn income based on the dice roll and the effects of the Establishments that they own that match the dice roll. The order to pay/collect from establishments is RED, GREEN, BLUE and PURPLE. The effects are multiplied by the number of Establishments of that type owned`,
+            3: `<span class="bold">CONSTRUCTION.</span> To conclude a player’s turn, he or she may pay to construct one single Establishment OR pay to finish construction on a single Landmark by paying the cost shown on the lower left-hand corner of the card.`
             },
         win_condition: "Play continues clockwise until one player wins the game by completing all four of their Landmarks first!"
         },
