@@ -52,11 +52,13 @@ nav{
 
 .summary-card img{
     margin: 0 auto;
-    max-width: 35vw;
+    max-width: 152px;
     min-width: 150px;
-    max-height: 150px;
+    max-height: 152px;
+    min-height: 152px;
     border: 1px solid black;
     border-radius: 5px;
+    object-fit:cover;
 }
 
 .summary-card h3{
@@ -77,8 +79,8 @@ nav{
 #hero img{
     display: block;
     margin: 0 auto;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 400px;
+    max-height: 400px;
     max-width: 90%;
     object-fit: contain;
 }

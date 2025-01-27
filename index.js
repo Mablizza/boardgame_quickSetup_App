@@ -37,7 +37,7 @@ function generateSummaryCardsArray(bgArray){
         cardContainerDiv.innerHTML += `                                  
                                         <div class="summary-card" id="id-0${idGenerator}">
                                             <h3> ${boardgame.title} </h3>
-                                            <image src="${boardgame.img}" alt="${boardgame.title} sample image">
+                                            <img src="${boardgame.img}" alt="${boardgame.title} sample image">
                                             <dl>
                                                 <dt>Number of Players: <dt>
                                                 <dd>${boardgame.number_of_players}
