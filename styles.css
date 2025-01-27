@@ -116,6 +116,10 @@ nav{
     font-weight: bold;
 }
 
+.action-title{
+    cursor: pointer;
+}
+
 a, a:active, a:visited{
     color: blue;
     cursor: pointer;
