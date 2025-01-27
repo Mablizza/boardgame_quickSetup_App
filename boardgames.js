@@ -187,7 +187,7 @@ export let bgCollection = [
             },
         player_turns: 
             {
-            0: `On your turn, perform a total of 2 actions <span class='bold'>[BUILD], [NETWORK] [DEVELOP] [SELL] [LOAN] [SCOUT]</span>.`,
+            0: `On your turn, perform a total of 2 actions <span class='bold blue''><a href="./extras/brassActions.html" target="_blank"> [BUILD], [NETWORK], [DEVELOP], [SELL], [LOAN], [SCOUT] </a> </span>. `,
             1: `For each action you perform, you must discard a card from your Hand and place it face up on top of your Discard Pile.`,
             2: `After all of your actions have been completed, refill your Hand back up to 8 cards with cards from the Draw Deck.`,
             3: `Place all money spent during your turn on top of your Character tile on the Turn Order Track.`,

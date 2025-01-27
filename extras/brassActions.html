@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/69c3c1ee49.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <title>Brass Actions</title>
+</head>
+<body>
+
+        <div id="brass-action-container">
+            <h1>Brass Actions</h1>
+            <ul>
+                
+                <li>
+                    <span class="bold action-title" onclick="displayBuildAction()">BUILD ACTION</span>
+                    <div id="build-action" class="build-action actions" >
+                        <ol>
+                            <li><span class="bold">Discard an appropriate card. </span> Unlike other actions, which allow you to use
+                                any card from your Hand, the Build action requires an appropriate card be discarded face up onto your
+                                Discard Pile. (Note: In 2/3-player games you may still build in any location.)
+                            </li>
+                            <li>Take the lowest level tile of the chosen industry from your Player Mat and place it (the side with the
+                                black top half face down) on an undeveloped space in your chosen build location, obeying the following
+                                rules:
+                                </br>• If possible, place it on a space displaying only that industry’s icon.
+                                </br>• Otherwise, place it on a space displaying that industry’s icon with another industry’s icon.
+                                </br>• If no undeveloped spaces display your industry’s icon, you may not place it in that location.
+                            </li>
+                            <li>
+                                The cost of the Industry tile you are building is displayed, to the left of its slot, on your Player Mat. Pay money onto your Character tile on the Turn Order Track, and consume any required iron and coal. 
+                            </li>
+                            <li>
+                                <span class="bold">If you built a [Coal Mine] or [Iron Works]:</span> Place coal or iron (from the General
+                                Supply) onto the Industry tile, equal to the quantity shown in the bottom right corner of the tile.
+                                </br> a) You must immediately move as many cubes as possible from the Industry tile to available spaces in
+                                its associated Market.
+                                </br> b) For each cube moved, collect the corresponding amount of money displayed on the coin to the left
+                                side of its Market space.
+                                </br> c) If the last cube is moved from your Industry tile to its Market, flip the Industry tileQ and advance
+                                your Income Marker along the Progress Track by the number of spaces shown in the bottom right corner of the tile.
+                            </li>
+                            <li>
+                                <span class="bold">If you built a [BREWERY]:</span> Place 1 beer barrel on the Industry tile if it is built
+                                during the Canal Era, or 2 beer barrels if it is built during the Rail Era.
+                            </li>
+                            <li>
+                                <span class="bold">NOTE:</span>If you have no Industry or Link tiles on the board, you may also (as an action) discard: • An Industry card
+                                to build the matching Industry tile in any location 
+                            </li>
+                        </ol>
+                        </br>
+                        <ul>
+                            <li>
+                                <p><span class="bold"> CANAL ERA BUILDING: </span></p>
+                                <p>• You may have a maximum of 1 Industry tile per location, but may have an Industry tile in the same
+                                    location as other players.
+                                </p>
+                                <p>• Industry tiles with a (Black/White Symbol) to the left of their slot on your Player Mat may not be built.</p>
+                            </li>
+                            <li>
+                                <p><span class="bold"> RAIL ERA BUILDING: </span></p>
+                                <p>• You may build multiple Industry tiles in each location.</p>
+                                <p>• Industry tiles with a (Blue/White Symbol) to the left of their slot on your Player Mat may not be built. Perform Develop Action to overcome.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li >
+                    <p><span class="bold action-title" onclick="displaySellAction()">SELL ACTION</span></p>
+                    <div id="sell-action" class="sell-action actions">
+                        <p>
+                            Performing the Sell action allows you to flip built [Cotton Mill], [Manufacturer], and [Pottery] tiles. Selling 
+                            requires:
+                        </p>
+                        <ul>
+                            <li> Connection to a Merchant tile. </li>
+                            <li> Beer (usually). </li>
+                        </ul>
+                        </br>
+                        <ol>
+                            <li>Discard any card from your Hand and place it face up onto your Discard Pile</li>
+                            <li>  Choose 1 of your unflipped [Cotton Mill], [Manufacturer], or [Pottery] tiles, that is
+                                connected to a Merchant tile featuring that industry’s icon.  </li>
+                            <li> Consume the required amount of beer, shown in the top right corner of the Industry tile. If there is a beer
+                                barrel on the space beside the Merchant tile you are selling to, you may consume this beer as part of the
+                                Sell action, and collect the Merchant beer bonus (see “Merchant Beer Bonuses”).  </li>
+                            <li> Flip the Industry tile and advance your Income Marker along the Progress Track by the number of spaces
+                                shown in the bottom right corner of the tile </li>
+                            <li> You may go back to step2 and repeat the process for each of your unflipped Industry tiles (including
+                                those of a different industry).</li>                        
+                        </ol>
+                    </div>
+                </li>
+
+                <li > 
+                    <span class="bold action-title" onclick="displayLoanAction()"> LOAN ACTION</span>
+                    <div id="loan-action" class="loan-action actions">
+                        <p>Performing the Loan action allows you to acquire more money. Loans are never repaid, but instead lower your
+                            income level.
+                        </p>
+                        <ol>
+                            <li>
+                                Discard any card from your Hand, and place it face up onto your Discard Pile. 
+                            </li>
+                            <li>
+                                Take £30 from the bank, and move your Income Marker 3 income levels (not spaces) backwards down the Progress
+                                Track. Place your Income Marker on the highest space within the new lower income level.
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                
+                </br>
+                <li> 
+                    <span class="bold action-title" onclick="displayScoutAction()"> SCOUT ACTION</span>
+                    <div id="scout-action" class="scout-action actions">
+                        <p>Performing the Scout action allows you to acquire Wild cards, which provide increased flexibility in where you
+                            may build. The Wild Industry card can be played as any Industry card. The Wild Location card can be played as
+                            any Location card. When discarded, a Wild card is placed back onto its Card Draw Area, not onto your Discard Pile.
+                        </p>
+                        <ol>
+                            <li>
+                                Discard any card from your Hand, plus 2 additional cards and place them face up onte your Discard Pile. 
+                            </li>
+                            <li>
+                                Take 1 Wild Location and 1 Wild Industry card.
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+            </br>
+                
+                <li > 
+                    <span class="bold action-title" onclick="displayDevelopAction()"> DEVELOP ACTION</span>
+                    <div id="develop-action" class="develop-action actions">
+                        <p>
+                            Performing the Develop action allows you to remove Industry tiles from your Player Mat. This allows
+                            you to gain access to higher-level Industry tiles without having to build all of the lower-level tiles of that
+                            industry.
+                        </p>
+                        <ol>
+                            <li>
+                                Discard any card from your Hand, and place it face up onto your Discard Pile. 
+                            </li>
+                            <li>
+                                Remove 1 or 2 Industry tiles from your Player Mat, and return them to the box. Each Industry tile is
+                                removed separately and does not need to be of the same industry, but must be the lowest level tile of
+                                the chosen industry (as it is removed).
+                            </li>
+                            <li>
+                                Consume 1 iron for each tile removed.
+                            </li>
+                        </ol>
+                        <p>
+                            NOTE! Pottery tiles that show a [LIGHT BULB] icon may not be developed. These tiles may only be removed from your
+                            Player Mat through use of the Build action.
+                        </p>
+                    </div>
+                </li>
+            </br>
+                <li >
+                    <span class="bold action-title" onclick="displayNetworkAction()"> NETWORK ACTION</span>
+                    <div id="network-action" class="network-action actions">    
+                        <p>
+                            Performing the Network action allows you to place Link tiles, which expand your network and gain you access to
+                            new locations.
+                        </p>
+                        <ol>
+                            <li>
+                                Discard any card from your Hand, and place it face up onto your Discard Pile. 
+                            </li>
+                            <li>
+                                Place a Link tile on an undeveloped line on the board. The placed Link tile must be adjacent to a location
+                                that is a part of your network (see “Your Network”).
+                            </li>
+                        </ol>
+                        <p>
+                            Network During Canal Era:
+                        </p>
+                        <ul>
+                            <li>
+                                You may not build rail Links.
+                            </li>
+                            <li>
+                                You may build canal Links on undeveloped canal lines.
+                            </li>
+                            <li>
+                                You may build a maximum of 1 canal Link for £3.
+                            </li>
+                        </ul>
+                        <p>
+                            Network During Rail Era:
+                        </p>
+                        <ul>
+                            <li>
+                                You may not build canal Links..
+                            </li>
+                            <li>
+                                You may build rail Links on undeveloped railroad lines.
+                            </li>
+                            <li>
+                                You may build 1 rail Link for £5.
+                            </li>
+                            <li>
+                                In a single Network action, you may build a maximum of 2 rail Links for £15, if you also consume 1 beer.
+                                This beer must be consumed from a Brewery (not a Merchant beer).
+                            </li>
+                            <li>
+                                You must consume 1 coal for each rail Link built.
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+<script src="brassActions.js" > </script>
+</body>
+
+</html>

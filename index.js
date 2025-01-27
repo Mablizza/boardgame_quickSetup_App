@@ -140,7 +140,7 @@ function displayCardDetails(){
     
     /*CALLS FUNCTIONS FOR RENDERING GAME DETAIL COMPONENTS*/
     if (document.getElementById("board_setup")){
-        console.log("a Board Setup does exist, call func 'renderBoard_Setup' Here)")
+        // console.log("a Board Setup does exist, call func 'renderBoard_Setup' Here)")
         renderBoardSetup()
     }
     if(document.getElementById("player_setup")){
@@ -152,7 +152,7 @@ function displayCardDetails(){
         renderPlayerTurns()
     }
     if(document.getElementById("win_condition")){
-        console.log("a Player Win Condition does exist, call func 'renderWin_Condition' Here)")
+        // console.log("a Player Win Condition does exist, call func 'renderWin_Condition' Here)")
         renderWinCondition()
     }
     renderPDFLinkIfAvailable()
@@ -209,8 +209,8 @@ function displayCardDetails(){
 
         /* CREATES ARRAY SPECIFIC TO THE CATEGORY WITH FILTER */
         const playerTurnsArray = selectedBGDetailsValues.filter( (setup) => setup[0] == "player_turns")[0]
-        console.log("playerTurnsArray:", playerTurnsArray)
-        console.log("playerTurnsArray[1]:", playerTurnsArray[1])
+        // console.log("playerTurnsArray:", playerTurnsArray)
+        // console.log("playerTurnsArray[1]:", playerTurnsArray[1])
 
         /* ADDS RESPECTIVE TITLE AND EVENT LISTENER FOR CLICK TO SHOW/TOGGLE THE DETAILS */
         const playerTurnsTitle = playerTurnsContainer.appendChild(document.createElement("h2"))
@@ -263,3 +263,5 @@ function displayCardDetails(){
         } else {console.log("there is no available pdf to show")}
     }  
 }
+
+

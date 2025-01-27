@@ -116,6 +116,12 @@ nav{
     font-weight: bold;
 }
 
+a, a:active, a:visited{
+    color: blue;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 /* MEDIA QUERIES */
 
 @media (min-width: 450px) {
@@ -130,6 +136,17 @@ nav{
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px */
     }
+}
 
+.action-title{
+    padding: 0 1rem;
+    text-transform: uppercase;
+    color: #0d0a6b;
+    background-color: rgb(160, 206, 206);
+    border: solid 1px;
+    border-radius: 5px;
+}
 
+.actions{
+    display: none;
 }
