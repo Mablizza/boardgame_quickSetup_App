@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Touch Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 18px;
+            text-align: center;
+            border: 3px solid #ddd;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .test-card:active {
+            background: #e3f2fd;
+            border-color: #2196f3;
+        }
+        #log {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            min-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚨 MOBILE TOUCH DEBUG TEST</h1>
+    <p>This is a minimal test to debug mobile touch issues.</p>
+    
+    <div id="log">Loading...</div>
+    
+    <div id="test1" class="test-card">
+        TEST 1: Basic Click Handler
+    </div>
+    
+    <div id="test2" class="test-card">
+        TEST 2: Touch Events
+    </div>
+    
+    <div id="test3" class="test-card">
+        TEST 3: Multiple Events
+    </div>
+    
+    <button id="test4" style="width: 100%; padding: 20px; font-size: 18px; background: red; color: white; border: none; border-radius: 10px; margin: 10px 0;">
+        TEST 4: Simple Button
+    </button>
+
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        // Clear log and start
+        document.getElementById('log').innerHTML = '';
+        log('🚀 Mobile Touch Test Started');
+        log('📱 User Agent: ' + navigator.userAgent);
+        log('👆 Touch Support: ' + ('ontouchstart' in window));
+        log('🖱️ Pointer Events: ' + ('onpointerdown' in window));
+        log('📏 Screen: ' + screen.width + 'x' + screen.height);
+        log('📐 Viewport: ' + window.innerWidth + 'x' + window.innerHeight);
+
+        // Test 1: Basic click
+        document.getElementById('test1').addEventListener('click', function(e) {
+            log('✅ TEST 1: Click event fired!');
+            this.style.background = '#4caf50';
+        });
+
+        // Test 2: Touch events
+        const test2 = document.getElementById('test2');
+        test2.addEventListener('touchstart', function(e) {
+            log('👆 TEST 2: Touch start');
+            this.style.background = '#ff9800';
+        });
+        test2.addEventListener('touchend', function(e) {
+            log('✅ TEST 2: Touch end');
+            this.style.background = '#4caf50';
+        });
+
+        // Test 3: Multiple events
+        const test3 = document.getElementById('test3');
+        test3.addEventListener('click', function(e) {
+            log('🖱️ TEST 3: Click');
+            this.style.background = '#2196f3';
+        });
+        test3.addEventListener('touchstart', function(e) {
+            log('👆 TEST 3: Touch start');
+        });
+        test3.addEventListener('touchend', function(e) {
+            log('✅ TEST 3: Touch end');
+            e.preventDefault();
+        });
+        test3.addEventListener('pointerdown', function(e) {
+            log('👉 TEST 3: Pointer down');
+        });
+
+        // Test 4: Simple button
+        document.getElementById('test4').onclick = function() {
+            log('🔴 TEST 4: Button clicked!');
+            alert('Button works!');
+        };
+
+        // Test if JavaScript is working at all
+        setTimeout(function() {
+            log('⏰ JavaScript setTimeout working');
+        }, 1000);
+
+        // Document ready
+        document.addEventListener('DOMContentLoaded', function() {
+            log('📄 DOM Content Loaded');
+        });
+
+        log('📜 Script loaded completely');
+    </script>
+</body>
+</html>

@@ -3,102 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quick setup guide for board games - Get playing faster with streamlined setup instructions">
-    <meta name="keywords" content="board games, setup guide, game rules, quick reference">
     <script src="https://kit.fontawesome.com/69c3c1ee49.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Board Game Quick Setup Guide</title>
+    <title>BG Quick Setup Guide</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-left">
-            <i id="page-logo" class="fa-solid fa-dice fa-2xl" aria-label="Board Game Icon"></i>
-            <h1 id="page-title">Quick Game Setup Guide</h1>
-        </div>
-        <a href="https://boardgame-quicksetup-app.pages.dev/" id="go-back" class="hidden">
-            <i class="fa-solid fa-arrow-left"></i>
-            Go Back
-        </a>
-    </nav>
-
-    <div class="main-container">
+        <nav>
+            <i id="page-logo" class="fa-solid fa-dice fa-2xl"></i>
+            <h1 id="page-title"> Quick Game Setup Guide</h1>
+            <a href="https://boardgame-quicksetup-app.pages.dev/" id="go-back">Go Back</a>
+        </nav>
         <div id="search-container">
-            <div class="search-header">
-                <h2>Find Your Game</h2>
-                <p>Search our collection of board games for quick setup instructions</p>
-            </div>
+            <label for="input-element">Search your game:</label></br>
+            <input id="input-element" type="text" placeholder="example: Clank!"> </input>
+            <button id="search-btn"> Search </button>
+            <br><br>
+            <div id="card-container">
             
-            <div class="search-input-group">
-                <div style="width: 100%;">
-                    <label for="input-element">Search your game:</label>
-                    <div style="display: flex; gap: 1rem;">
-                        <input 
-                            id="input-element" 
-                            type="text" 
-                            placeholder="e.g., Clank!, Scythe, Wingspan..." 
-                            autocomplete="off"
-                            aria-describedby="search-help"
-                        >
-                        <button id="search-btn" aria-label="Search games">
-                            <i class="fa-solid fa-search"></i>
-                            Search
-                        </button>
-                    </div>
-                    <small id="search-help" style="color: #6b7280; margin-top: 0.5rem; display: block;">
-                        Start typing to search by game name
-                    </small>
-                </div>
-            </div>
-
-            <div class="filters-section">
-                <div class="filter-chip active" data-filter="all">All Games</div>
-                <div class="filter-chip" data-filter="favorites">
-                    <i class="fa-solid fa-heart"></i>
-                    Favorites
-                </div>
-                <div class="filter-chip" data-filter="2">2 Players</div>
-                <div class="filter-chip" data-filter="3">3-4 Players</div>
-                <div class="filter-chip" data-filter="5">5+ Players</div>
-                <div class="filter-chip" data-filter="recent">Recently Viewed</div>
-            </div>
-
-            <div id="search-results-info" class="text-center" style="margin-bottom: 1rem; color: #6b7280;">
-                <!-- Dynamic search results count will appear here -->
-            </div>
-
-            <div id="card-container" class="fade-in">
-                <!-- Game cards will be generated here -->
-            </div>
-
-            <div id="no-results" class="text-center hidden" style="padding: 2rem; color: #6b7280;">
-                <i class="fa-solid fa-search fa-3x" style="margin-bottom: 1rem; opacity: 0.5;"></i>
-                <h3>No games found</h3>
-                <p>Try adjusting your search terms or filters</p>
-                <button id="clear-search-btn" style="margin-top: 1rem; background: #6b7280; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer;">
-                    Clear Search
-                </button>
             </div>
         </div>
-
-        <div id="details-container" class="hidden">
+        <div id="details-container">
             <div id="hero"></div>
-            <!-- Dynamic game details will be generated here -->
         </div>
-    </div>
 
-    <!-- Loading indicator -->
-    <div id="loading-indicator" class="hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.95); padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; z-index: 1000;">
-        <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: #2563eb; margin-bottom: 1rem;"></i>
-        <p>Loading game details...</p>
-    </div>
-
-    <!-- Toast notifications -->
-    <div id="toast-container" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
-        <!-- Toast notifications will appear here -->
-    </div>
-
-    <script type="module" src="./index.js"></script>
+<script type="module" src="./index.js" > </script>
 </body>
+
 </html>
-
-
