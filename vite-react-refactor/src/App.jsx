@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black">
       <Navigation 
         selectedGame={selectedGame}
         onBackToSearch={handleBackToSearch}

@@ -8,7 +8,7 @@ function Navigation({ selectedGame, onBackToSearch }) {
       {selectedGame && (
         <button 
           onClick={onBackToSearch}
-          className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ml-auto"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ml-auto"
         >
           Go Back
         </button>

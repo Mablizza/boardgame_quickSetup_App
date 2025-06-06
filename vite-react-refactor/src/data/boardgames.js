@@ -187,7 +187,7 @@ export const bgCollection = [
             },
         player_turns: 
             {
-            0: `On your turn, perform a total of 2 actions: <span class="font-bold text-blue-600">[BUILD], [NETWORK], [DEVELOP], [SELL], [LOAN], [SCOUT]</span>.`,
+            0: `On your turn, perform a total of 2 actions: <a href="/extras/brassActions.html" class="font-bold text-blue-600 hover:text-blue-800 underline">[BUILD], [NETWORK], [DEVELOP], [SELL], [LOAN], [SCOUT]</a>.`,
             1: `For each action you perform, you must discard a card from your Hand and place it face up on top of your Discard Pile.`,
             2: `After all of your actions have been completed, refill your Hand back up to 8 cards with cards from the Draw Deck.`,
             3: `Place all money spent during your turn on top of your Character tile on the Turn Order Track.`,
@@ -251,5 +251,40 @@ export const bgCollection = [
         win_condition: `When a player places their 6th star game ends immediately. Scoring: Coins in hand + Coins for each star, territory controlled (factory counts as 3), every 2 resources controlled + Coins for structure bonus tile (control doesn't matter)`
         },
     pdf_rulebook: `https://s3.amazonaws.com/geekdo-files.com/bgg286260?response-content-disposition=inline%3B%20filename%3D%22SCYTHEv1.4.pdf%22&response-content-type=application%2Fpdf&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJYFNCT7FKCE4O6TA%2F20250127%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250127T034508Z&X-Amz-SignedHeaders=host&X-Amz-Expires=120&X-Amz-Signature=ba9228ddec7b9966051538e40092bfc8a82ff6b0b9d9a82e7846fe99306e4ae7`
+    },
+    {
+        title: `Space Base`,
+        img: `https://cf.geekdo-images.com/MHhQxXVjiaa6C-04nGiIWw__itemrep/img/TGmQxOs7gRRxUmEtI_k8iagt1kA=/fit-in/246x300/filters:strip_icc()/pic6640638.jpg`,
+        number_of_players: `2-5`,
+        details: {
+            board_setup: {
+                0: `Place the main board in the center of the table showing the Commodore Track and Fleet Track.`,
+                1: `Shuffle the Level 1 Ship cards and place them face-down as a draw deck next to the board.`,
+                2: `Deal 3 Level 1 Ship cards face-up to create the Shipyard (purchasing area).`,
+                3: `Shuffle the Level 2 and Level 3 Ship cards separately and place them as separate face-down decks.`,
+                4: `Place the Reward cards in separate stacks by type (green, yellow, blue) next to the board.`,
+                5: `Put the Colony tokens, dice, and other components within easy reach of all players.`,
+                6: `Determine the first player randomly.`
+            },
+            player_setup: {
+                0: `Each player takes a Player Board and places it in front of them.`,
+                1: `Place the 12 starting Ship cards on your Player Board on sectors 1-12 (one card per sector).`,
+                2: `Take 1 Reward cube of each color (red, green, yellow, blue) and place them on your Player Board.`,
+                3: `Place your Admiral token on space 0 of the Commodore Track on the main board.`,
+                4: `Each player starts with 0 Victory Points and 0 Fleet Track progress.`,
+                5: `The starting player takes both dice to begin the game.`
+            },
+            player_turns: {
+                0: `Roll both dice - this determines which sectors activate for ALL players this turn.`,
+                1: `<span class="font-bold">Active Player Phase:</span> Gain rewards from the sectors matching your dice roll on ships you own.`,
+                2: `<span class="font-bold">Passive Player Phase:</span> All other players gain rewards from sectors that match EITHER die result from ships they own.`,
+                3: `<span class="font-bold">Purchase Phase:</span> The active player may purchase one ship from the Shipyard using Reward cubes.`,
+                4: `When you purchase a ship, place it on top of the corresponding sector number, covering the previous ship.`,
+                5: `<span class="font-bold">Refill Shipyard:</span> If a ship was purchased, immediately refill the empty Shipyard slot with a new card.`,
+                6: `Pass the dice clockwise to the next player who becomes the new active player.`
+            },
+            win_condition: `The game ends immediately when any player reaches 40+ Victory Points during any phase. That player wins! If multiple players reach 40+ VP in the same turn, the player with the most VP wins. In case of a tie, the tied player furthest along the Fleet Track wins.`
+        },
+        pdf_rulebook: `https://www.alderac.com/tempest/files/2017/10/Space-Base-Rulebook.pdf`
     },
 ]
