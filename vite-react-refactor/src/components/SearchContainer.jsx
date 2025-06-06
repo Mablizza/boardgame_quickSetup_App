@@ -31,7 +31,7 @@ function SearchContainer({ searchResults, onGameSelect, onSearch }) {
         />
         <button 
           onClick={handleSearch}
-          className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+          className="bg-blue-900 hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
         >
           Search
         </button>
