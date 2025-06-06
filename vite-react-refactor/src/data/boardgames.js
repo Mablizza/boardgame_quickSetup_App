@@ -258,33 +258,31 @@ export const bgCollection = [
         number_of_players: `2-5`,
         details: {
             board_setup: {
-                0: `Place the main board in the center of the table showing the Commodore Track and Fleet Track.`,
-                1: `Shuffle the Level 1 Ship cards and place them face-down as a draw deck next to the board.`,
-                2: `Deal 3 Level 1 Ship cards face-up to create the Shipyard (purchasing area).`,
-                3: `Shuffle the Level 2 and Level 3 Ship cards separately and place them as separate face-down decks.`,
+                0: `Put all 12 Colony cards, charge cubes, and dice in reach of all players. `,
+                1: `Set up the shipyard by shuffling each level of ship card into its own deck, and then flipping over 6 cards faceup next to the deck.`,
+                2: `Each player starts with a console, a set of starting ship cards and 3 colored cubes.`,
+                3: `Each player’s  start at 5 coin. (yellow cube at 5) and green and blue cubes at 0.`,
                 4: `Place the Reward cards in separate stacks by type (green, yellow, blue) next to the board.`,
-                5: `Put the Colony tokens, dice, and other components within easy reach of all players.`,
-                6: `Determine the first player randomly.`
+                5: `Determine the first player in method of your choosing.`,
             },
             player_setup: {
-                0: `Each player takes a Player Board and places it in front of them.`,
+                0: `Each player takes thir player console and places it in front of them.`,
                 1: `Place the 12 starting Ship cards on your Player Board on sectors 1-12 (one card per sector).`,
-                2: `Take 1 Reward cube of each color (red, green, yellow, blue) and place them on your Player Board.`,
-                3: `Place your Admiral token on space 0 of the Commodore Track on the main board.`,
-                4: `Each player starts with 0 Victory Points and 0 Fleet Track progress.`,
-                5: `The starting player takes both dice to begin the game.`
+                2: `Each player’s  start at 5 coin. (yellow cube at 5).`,
+                3: `Each player starts with 0 Income and 0 VictoryPoints (green and blue cubes at 0).`,
+                4: `The starting player rolls both dice to begin the game.`
             },
             player_turns: {
                 0: `Roll both dice - this determines which sectors activate for ALL players this turn.`,
-                1: `<span class="font-bold">Active Player Phase:</span> Gain rewards from the sectors matching your dice roll on ships you own.`,
-                2: `<span class="font-bold">Passive Player Phase:</span> All other players gain rewards from sectors that match EITHER die result from ships they own.`,
-                3: `<span class="font-bold">Purchase Phase:</span> The active player may purchase one ship from the Shipyard using Reward cubes.`,
-                4: `When you purchase a ship, place it on top of the corresponding sector number, covering the previous ship.`,
-                5: `<span class="font-bold">Refill Shipyard:</span> If a ship was purchased, immediately refill the empty Shipyard slot with a new card.`,
+                1: `<span class="font-bold">Active Player Phase:</span> Gain rewards from the ships matching your dice roll on sectors you own.`,
+                2: `<span class="font-bold">Passive Player Phase:</span> All other players gain rewards from ships that match EITHER die result from sectors they own.`,
+                3: `<span class="font-bold">Purchase Phase:</span> The active player may purchase one ship from the Shipyard using the yellow Coins cube.`,
+                4: `When you purchase a ship, place it on top of the corresponding sector number, and putting previous ship under console upside-down so only the red reward section is shown. These passive rewards can stack the more ships you buy.`,
+                5: `<span class="font-bold">Refill Shipyard:</span> If a ship was purchased, immediately refill the empty Shipyard slot with a new card and reset active player Coins cube to their respective Income level.`,
                 6: `Pass the dice clockwise to the next player who becomes the new active player.`
             },
-            win_condition: `The game ends immediately when any player reaches 40+ Victory Points during any phase. That player wins! If multiple players reach 40+ VP in the same turn, the player with the most VP wins. In case of a tie, the tied player furthest along the Fleet Track wins.`
+            win_condition: `When any player reaches 40+ Victory Points, all players must finish the current round. The player with most VP wins! .`
         },
-        pdf_rulebook: `https://www.alderac.com/tempest/files/2017/10/Space-Base-Rulebook.pdf`
+        pdf_rulebook: `https://www.alderac.com/wp-content/uploads/2023/04/2023-04-21-spacebase-rulebook-optimized.pdf`
     },
 ]
