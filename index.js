@@ -160,7 +160,7 @@ function generateSummaryCardsArray(bgArray) {
                         ${boardgame.number_of_players} players
                     </span>
                     <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" 
-                            onclick="toggleFavorite('${boardgame.title}', event)"
+                            data-game-title="${boardgame.title}"
                             aria-label="${isFavorited ? 'Remove from favorites' : 'Add to favorites'}"
                             title="${isFavorited ? 'Remove from favorites' : 'Add to favorites'}">
                         <i class="fa-${isFavorited ? 'solid' : 'regular'} fa-heart"></i>
@@ -174,6 +174,28 @@ function generateSummaryCardsArray(bgArray) {
 
     // Re-add click listeners to new cards
     addClickListenerToCards()
+    
+    // Add direct click handlers as backup for mobile
+    setTimeout(() => {
+        const cards = document.querySelectorAll('.summary-card')
+        cards.forEach(card => {
+            // Remove any existing handlers
+            card.onclick = null
+            card.ontouchend = null
+            
+            // Add backup handlers
+            card.onclick = function(e) {
+                console.log('Direct click handler triggered')
+                handleCardInteraction(e)
+            }
+            
+            card.ontouchend = function(e) {
+                console.log('Direct touch handler triggered')
+                e.preventDefault()
+                handleCardInteraction(e)
+            }
+        })
+    }, 100)
 }
 
 // Highlight search terms in results
@@ -186,7 +208,10 @@ function highlightSearchTerm(text, searchTerm) {
 
 // Favorites functionality
 function toggleFavorite(gameTitle, event) {
-    event.stopPropagation() // Prevent card click
+    if (event) {
+        event.stopPropagation() // Prevent card click
+        event.preventDefault() // Prevent default behavior
+    }
     
     const index = favorites.indexOf(gameTitle)
     if (index > -1) {
@@ -205,44 +230,69 @@ function toggleFavorite(gameTitle, event) {
         applyCurrentFilter()
     } else {
         // Just update the button state
-        const favoriteBtn = event.target.closest('.favorite-btn')
-        const icon = favoriteBtn.querySelector('i')
-        const isFavorited = favorites.includes(gameTitle)
-        
-        favoriteBtn.classList.toggle('favorited', isFavorited)
-        icon.className = `fa-${isFavorited ? 'solid' : 'regular'} fa-heart`
-        favoriteBtn.setAttribute('aria-label', isFavorited ? 'Remove from favorites' : 'Add to favorites')
-        favoriteBtn.setAttribute('title', isFavorited ? 'Remove from favorites' : 'Add to favorites')
+        const favoriteBtn = event ? event.target.closest('.favorite-btn') : null
+        if (favoriteBtn) {
+            const icon = favoriteBtn.querySelector('i')
+            const isFavorited = favorites.includes(gameTitle)
+            
+            favoriteBtn.classList.toggle('favorited', isFavorited)
+            icon.className = `fa-${isFavorited ? 'solid' : 'regular'} fa-heart`
+            favoriteBtn.setAttribute('aria-label', isFavorited ? 'Remove from favorites' : 'Add to favorites')
+            favoriteBtn.setAttribute('title', isFavorited ? 'Remove from favorites' : 'Add to favorites')
+        }
     }
 }
 
-// Enhanced card click functionality
+// Enhanced card click functionality with proper mobile support
 function addClickListenerToCards() {
-    const summaryCards = document.getElementsByClassName("summary-card")
-
-    for (let i = summaryCards.length - 1; i >= 0; i--) {
-        summaryCards[i].addEventListener("click", handleCardClick)
-    }
+    // Remove any existing listeners to prevent duplicates
+    const cardContainer = document.getElementById("card-container")
+    
+    // Use event delegation instead of individual listeners
+    cardContainer.removeEventListener("click", handleCardContainerClick)
+    cardContainer.addEventListener("click", handleCardContainerClick)
+    
+    // Also add touch event for better mobile support
+    cardContainer.removeEventListener("touchend", handleCardContainerTouch)
+    cardContainer.addEventListener("touchend", handleCardContainerTouch)
 }
 
-function handleCardClick(e) {
-    // Don't trigger if clicking on favorite button
-    if (e.target.closest('.favorite-btn')) {
+function handleCardContainerClick(e) {
+    handleCardInteraction(e)
+}
+
+function handleCardContainerTouch(e) {
+    // Prevent the click event from also firing
+    e.preventDefault()
+    handleCardInteraction(e)
+}
+
+function handleCardInteraction(e) {
+    console.log('Card interaction triggered:', e.type, e.target) // Debug log
+    
+    // Handle favorite button clicks
+    const favoriteBtn = e.target.closest('.favorite-btn')
+    if (favoriteBtn) {
+        console.log('Favorite button clicked') // Debug log
+        e.preventDefault()
+        e.stopPropagation()
+        const gameTitle = favoriteBtn.dataset.gameTitle
+        if (gameTitle) {
+            toggleFavorite(gameTitle, e)
+        }
         return
     }
 
-    const searchContainer = document.getElementById("search-container")
-    let clickedID = ""
-    let cardElement = e.target
-
     // Find the card element
-    while (cardElement && !cardElement.classList.contains('summary-card')) {
-        cardElement = cardElement.parentElement
+    let cardElement = e.target.closest('.summary-card')
+    if (!cardElement) {
+        console.log('No card element found') // Debug log
+        return
     }
+    
+    console.log('Card clicked:', cardElement.dataset.gameTitle) // Debug log
 
-    if (!cardElement) return
-
-    clickedID = cardElement.id
+    const searchContainer = document.getElementById("search-container")
     const titleElement = cardElement.querySelector('h3')
     
     if (!titleElement) return
@@ -584,4 +634,8 @@ window.toggleFavorite = toggleFavorite
 document.addEventListener('DOMContentLoaded', initializeApp)
 
 // Initialize immediately as fallback
-initializeApp()
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp)
+} else {
+    initializeApp()
+}
